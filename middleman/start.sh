@@ -1,4 +1,6 @@
 #!/bin/bash
+set -ex
+
 if [ -n "$REPO" ]; then
   git clone -b $BRANCH $REPO
   SHORT=${REPO##*/}
@@ -11,8 +13,9 @@ fi
 export LC_ALL=C.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+unset BUNDLER_VERSION
 
-# gem install bundler
+gem install bundler
 bundle install
 npm install
 
