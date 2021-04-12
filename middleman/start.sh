@@ -15,7 +15,11 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 unset BUNDLER_VERSION
 
-gem install bundler
+if [ -f "Gemfile.lock" ]; then
+  gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
+else
+  gem install bundler
+fi
 bundle install
 npm install
 
